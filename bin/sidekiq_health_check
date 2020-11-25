@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+FILE="${1:-tmp/sidekiq_health}"
+
+INTERVAL=${SIDEKIQ_HEARTBEAT_INTERVAL:-5}
+
+if test -f "$FILE"; then
+  if [ "$(( $(date +"%s") - $(date -r $FILE +%s) ))" -gt "$INTERVAL" ]; then
+    echo "UNHEALTHY. $FILE is older than $INTERVAL seconds."
+    exit 2
+  else
+    echo "HEALTHY"
+    exit 0
+  fi
+else
+  echo "$FILE does not exist"
+  exit 1
+fi
