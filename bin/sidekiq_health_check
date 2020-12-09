@@ -4,7 +4,7 @@ set -e
 
 FILE="${1:-tmp/sidekiq_health}"
 
-INTERVAL=${SIDEKIQ_HEARTBEAT_INTERVAL:-5}
+INTERVAL=${SIDEKIQ_HEARTBEAT_INTERVAL:-10}
 
 if test -f "$FILE"; then
   if [ "$(( $(date +"%s") - $(date -r $FILE +%s) ))" -gt "$INTERVAL" ]; then
