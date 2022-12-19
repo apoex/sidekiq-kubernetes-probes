@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sidekiq-kubernetes-probes (0.3.0)
+    sidekiq-kubernetes-probes (1.0.0)
 
 GEM
   remote: https://rubygems.org/
